@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Complaints - NSRIT Feedback System{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Complaints Management</h1>
+
+<div class="mb-4">
+    <a href="?status=all" class="btn btn-secondary {% if not request.args.get('status') or request.args.get('status') == 'all' %}active{% endif %}">
+        All
+    </a>
+    <a href="?status=pending" class="btn btn-warning {% if request.args.get('status') == 'pending' %}active{% endif %}">
+        Pending
+    </a>
+    <a href="?status=resolved" class="btn btn-success {% if request.args.get('status') == 'resolved' %}active{% endif %}">
+        Resolved
+    </a>
+</div>
+
+<div class="row">
+    {% if complaints %}
+        {% for complaint in complaints %}
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h5 class="mb-0">{{ complaint.title }}</h5>
+                                <small class="text-muted">By: {{ complaint.student.name }}</small>
+                            </div>
+                            <div class="col-md-4 text-end">
+                                {% if complaint.status == 'pending' %}
+                                    <span class="badge bg-warning">Pending</span>
+                                {% else %}
+                                    <span class="badge bg-success">Resolved</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ complaint.description }}</p>
+                        <small class="text-muted">
+                            Submitted: {{ complaint.created_at.strftime('%d-%m-%Y %H:%M') }}
+                        </small>
+                    </div>
+                    {% if complaint.status == 'pending' %}
+                        <div class="card-footer">
+                            <form method="POST" action="{{ url_for('admin.resolve_complaint', complaint_id=complaint.id) }}" style="display: inline;">
+                                <button type="submit" class="btn btn-success btn-sm">Mark as Resolved</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-md-12">
+            <div class="alert alert-info">
+                No complaints found.
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+<div class="mt-4">
+    <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+</div>
+{% endblock %}

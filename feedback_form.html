@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Feedback Form - NSRIT Feedback System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h1 class="mb-4">Subject Feedback Form</h1>
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ subject.name }}</h5>
+                <p class="card-text">
+                    <strong>Code:</strong> {{ subject.code }}<br>
+                    <strong>Type:</strong> {{ subject.subject_type }}<br>
+                    {% if subject.faculty %}
+                        <strong>Faculty:</strong> {{ subject.faculty.name }}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <form method="POST">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Rate the Following Aspects (1-5 scale)</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <label class="form-label"><strong>Overall Teaching Quality</strong></label>
+                        <div class="rating-group">
+                            {% for i in range(1, 6) %}
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="rating" id="rating{{ i }}" value="{{ i }}" {% if i == 3 %}checked{% endif %} required>
+                                    <label class="form-check-label" for="rating{{ i }}">
+                                        {{ i }} {% if i == 1 %}⭐{% elif i == 2 %}⭐⭐{% elif i == 3 %}⭐⭐⭐{% elif i == 4 %}⭐⭐⭐⭐{% else %}⭐⭐⭐⭐⭐{% endif %}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label"><strong>Content Quality & Delivery</strong></label>
+                        <div class="rating-group">
+                            {% for i in range(1, 6) %}
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="content_quality" id="content{{ i }}" value="{{ i }}" {% if i == 3 %}checked{% endif %} required>
+                                    <label class="form-check-label" for="content{{ i }}">
+                                        {{ i }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label"><strong>Teaching Methods & Materials</strong></label>
+                        <div class="rating-group">
+                            {% for i in range(1, 6) %}
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="teaching_method" id="method{{ i }}" value="{{ i }}" {% if i == 3 %}checked{% endif %} required>
+                                    <label class="form-check-label" for="method{{ i }}">
+                                        {{ i }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label"><strong>Communication & Accessibility</strong></label>
+                        <div class="rating-group">
+                            {% for i in range(1, 6) %}
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="communication" id="comm{{ i }}" value="{{ i }}" {% if i == 3 %}checked{% endif %} required>
+                                    <label class="form-check-label" for="comm{{ i }}">
+                                        {{ i }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="feedback_text" class="form-label"><strong>Additional Comments (Optional)</strong></label>
+                        <textarea class="form-control" id="feedback_text" name="feedback_text" rows="5" placeholder="Share your thoughts, suggestions, and feedback..."></textarea>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success btn-lg me-2">Submit Feedback</button>
+                    <a href="{{ url_for('student.dashboard') }}" class="btn btn-secondary btn-lg">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

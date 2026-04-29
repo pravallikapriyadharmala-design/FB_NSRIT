@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - NSRIT Feedback System{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Admin Dashboard</h1>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h6 class="card-title">Total Feedbacks</h6>
+                <h2>{{ total_feedbacks }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h6 class="card-title">Total Complaints</h6>
+                <h2>{{ total_complaints }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <h6 class="card-title">Pending Complaints</h6>
+                <h2>{{ pending_complaints }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h6 class="card-title">Total Students</h6>
+                <h2>{{ total_students }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <h3>Quick Links</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{{ url_for('admin.view_feedbacks') }}" class="btn btn-primary w-100 mb-2">
+                    View All Feedbacks
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ url_for('admin.view_complaints') }}" class="btn btn-warning w-100 mb-2">
+                    View Complaints
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ url_for('admin.analytics') }}" class="btn btn-info w-100 mb-2">
+                    View Analytics
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

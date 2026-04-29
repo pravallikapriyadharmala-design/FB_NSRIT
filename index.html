@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}NSRIT Feedback System - Home{% endblock %}
+
+{% block content %}
+<div class="row align-items-center">
+    <div class="col-md-6">
+        <div class="mb-4">
+            <h1 class="display-4">NSRIT College</h1>
+            <h3 class="text-primary">Academic Feedback System</h3>
+            <p class="lead mt-3">
+                Provide valuable feedback to help us improve our educational quality.
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <img src="https://via.placeholder.com/300x200?text=NSRIT+Logo" class="img-fluid mb-4" alt="NSRIT Logo">
+    </div>
+</div>
+
+<hr class="my-5">
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <div class="card shadow-lg border-0">
+            <div class="card-body p-5 text-center">
+                <h2 class="card-title mb-3">
+                    <i class="fas fa-user-graduate"></i> Student Login
+                </h2>
+                <p class="card-text mb-4">
+                    Access your feedback portal and submit subject-wise feedback
+                </p>
+                <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg">Student Login</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-lg border-0">
+            <div class="card-body p-5 text-center">
+                <h2 class="card-title mb-3">
+                    <i class="fas fa-user-tie"></i> Admin Login
+                </h2>
+                <p class="card-text mb-4">
+                    Access admin dashboard to view feedbacks and analytics
+                </p>
+                <a href="{{ url_for('auth.login') }}" class="btn btn-danger btn-lg">Admin Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="text-center p-4">
+            <h4>📚 Multiple Branches</h4>
+            <p>7 engineering branches supported</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="text-center p-4">
+            <h4>⭐ Comprehensive Feedback</h4>
+            <p>Subject, faculty, and lab feedback</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="text-center p-4">
+            <h4>📊 Real-time Analytics</h4>
+            <p>Track feedback and complaints</p>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <p class="text-muted text-center">
+            Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

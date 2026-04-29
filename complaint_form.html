@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Submit Complaint - NSRIT Feedback System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h1 class="mb-4">Submit a Complaint</h1>
+        
+        <div class="card">
+            <div class="card-header bg-warning">
+                <h5 class="mb-0">Grievance Form</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label"><strong>Complaint Title</strong></label>
+                        <input type="text" class="form-control" id="title" name="title" required placeholder="Brief title of your complaint">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label"><strong>Detailed Description</strong></label>
+                        <textarea class="form-control" id="description" name="description" rows="6" required placeholder="Please provide a detailed description of your complaint..."></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <small class="text-muted">
+                            <strong>Note:</strong> Your complaint will be reviewed by the administration. 
+                            You will be notified about the status of your complaint.
+                        </small>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning btn-lg me-2">Submit Complaint</button>
+                    <a href="{{ url_for('student.dashboard') }}" class="btn btn-secondary btn-lg">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
